@@ -1,0 +1,11 @@
+{% load menu_tags %}
+<ul>
+    <a href="{% url 'menu:index' main_object.id %}">{{ main_object.name }}</a>
+    {% for child in children %}
+        {% if not pk or pk == main_object.id or not active %}
+            <ul><a href="{% url 'menu:index' child.id %}">{{ child.name }}</a></ul>
+        {% else %}
+            {% draw_children child.id %}
+        {% endif  %}
+    {% endfor %}
+</ul>
